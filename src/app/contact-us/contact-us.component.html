@@ -1,0 +1,156 @@
+<main>
+<section id="smBanner" class="contact_background">
+    <div class="contain">
+       <div class="cntnt">
+       	<div class="flex">
+           <div class="col _col1">
+	           	<div class="image">
+	           		<img src="assets/images/new1.png">
+	           	</div>
+	           	<h4>Phone Support</h4>
+           </div>
+           <div class="col _col2">
+	           	<div class="image">
+	           		<img src="assets/images/new2.png">
+	           	</div>
+	           	<h4>Email Support</h4>
+           </div>
+           <div class="col _col3">
+	           	<div class="image">
+	           		<img src="assets/images/new3.png">
+	           	</div>
+	           	<h4>Live Chat</h4>
+           </div>
+       </div>
+       </div>
+    </div>
+</section>
+
+<section class="cmnSec contactInfo bgContact">
+	<div class="contain">
+		<div class="flex">
+			<div class="c_info">
+
+				<form 
+					[formGroup]="contactForm"
+					(ngSubmit)="onSubmit()"
+				 >
+					
+					<h1>We’d love to hear from you</h1>
+					<p>Whether you have a question about features, trials, pricing, need a demo, or anything 		else, our team is ready to answer all your questions						
+					</p>
+					
+					<div class="innerCol">
+						<div class="row formRow">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12 txtGrp">
+								<input 
+									id=""
+									type="text" 
+									name="name" 
+									formControlName="fullName"
+									class="txtBox" 
+									placeholder="Full Name" 
+									required
+								>
+							<div *ngIf="fullName && fullName.invalid && (fullName.touched || fullName.dirty)"
+									class="text-danger"
+									>
+							
+									<small *ngIf="fullName.errors?.required">
+										Name is required.
+									</small>
+									<small *ngIf="fullName.errors?.minlength">
+										Name must be more than 2 charachter
+									</small>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12 txtGrp">
+								<input 
+									id=""
+									type="text" 
+									formControlName="phone"
+									name="phone" 
+									class="txtBox"
+									placeholder="Phone Number"
+									required 
+								>
+								<div *ngIf="phone && phone.invalid && (phone.touched || phone.dirty)"
+									class="text-danger"
+									>
+							
+									<small *ngIf="phone.errors?.required">
+										Phone is required.
+									</small>
+									<small *ngIf="phone.errors?.pattern">
+										Phone number not valid.</small>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12 txtGrp">
+								<input 
+									type="text" 
+									name="subject"
+									formControlName="subject"
+									id="" 
+									class="txtBox"
+									placeholder="Subject"
+								  >
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12 txtGrp">
+								<input 
+									type="text" 
+									name="email"
+									formControlName="email"
+									id="" 
+									class="txtBox"
+									placeholder="Email Address"
+									pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+									required
+								>
+								<div *ngIf="email && email.invalid && (email.touched || email.dirty)"
+									class="text-danger"
+									>
+							
+									<small *ngIf="email.errors?.required">
+										email is required.
+									</small>
+									<small *ngIf="email.errors?.pattern">
+										email not valid.</small>
+								</div>
+							</div>
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-xx-12 txtGrp">
+								<textarea 
+									name="message" 
+									formControlName="message"
+									id="" class="txtBox" 
+									placeholder="Message" 
+									required
+								></textarea>
+							</div>
+						</div>
+						<div class="bTn text-center">
+							<button
+							 type="submit"
+							  class="webBtn blueBtn colorBtn2"
+							>
+							  Submit
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="cmnFnt">
+				<h2>How Can We Help?</h2>
+				<p>Our team endeavour to respond to all enquiries within 24 hours.Our team is happy to answer your questions. Fill out the form and we’ll be in touch as soon as possible.</p>
+				<ul class="infoLst">
+					<li><i class="fi-map-marker"></i><span>156 Great Charles Street Queensway Birmingham West Midlands B3 3HN UNITED KINGDOM </span></li>
+					<li><i class="fi-envelope"></i><a href="mailto:info@altras.co.uk">info@altras.co.uk</a></li>
+					<li><i class="fi-globe"></i><a href="http://www.altras.co.uk/">www.altras.co.uk</a></li>
+					<li><i class="fi-phone"></i><a href="tel:+65 6396 5853">+441217730218</a></li>
+				</ul>
+			</div>
+	    </div>
+		
+	</div>
+</section>
+
+</main>

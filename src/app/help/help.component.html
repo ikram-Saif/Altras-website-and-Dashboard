@@ -1,0 +1,21 @@
+<main>
+    <div id="dash">
+        <div class="contain">
+
+                <div class="dashForms helpSection">
+                    <h3>Got a question?</h3>
+                    <p>Check out the available queries below</p>
+                    <ul>
+                        <li *ngFor = 'let helpInfo of  helpInformation'>
+                            <h4>{{helpInfo.title}}?</h4>
+                            <a href="javascript:void(0)" class="popBtn" data-popup="help">Watch 
+                                <i class="fa fa-play" (click) = "videoUrl(helpInfo.videoUrl,helpInfo.title)"></i></a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        
+    </div>
+<app-display-help-video [helpVideoUrl] = "url" [videoTitle] = "title"></app-display-help-video>
+</main>
+

@@ -1,0 +1,166 @@
+
+
+<section id="allForm">
+    <div class="contain">
+       <div class="calculateFlex">
+            <form 
+				[formGroup] = "todayRateForm"
+			 >
+                <div class="flex newCalculate">
+                	<div class="colL">
+                		<div class="_inner">
+                			<h3>Make faster, low-cost <br>money transfers <br>simply and securely.</h3>
+                			<p></p>
+                			<a href="#" routerLink = '/registeration' routerLinkActive="active" class="webBtn blueBtn">Send Now</a>
+                		</div>
+                	</div>
+                	<div class="colR">
+                		<div class="_inner">
+                			<!-- <h2>Send Money Online</h2> -->
+                			
+							<div  class ='_inner'>
+								<label >Delivery Method</label>
+										 
+										 <label *ngFor ="let dMethod of deliveryMethods"  class="radio-inline" for = "dMethod.method">
+										<input 
+											type="radio" 
+											name="deliveryMethod" 
+											formControlName = "deliveryMethod"
+											[value] = "dMethod.method"
+											id = "dMethod.method"
+											(change) ="fillDeliveryCurencies()"
+											>
+											&nbsp;{{dMethod.method =="1"?"Cash Pickup": "Bank"}} &nbsp;
+											
+										</label>
+										
+							</div>
+							<div class="_inner">
+	                            <label>Sending Country</label>
+								<div id="country1" class="dropDown">
+	                                <select 
+									name = "sendingCountry"
+									class="dropBtn txtBox cmnCountryBox"
+									formControlName = "sendingCountry"
+									(change) = "getCalcolatorListObject()"
+
+									>
+									<option *ngFor = "let sendcountry of TrCountries" [value]="sendcountry.CountryID">{{sendcountry.Country}}</option>
+									  
+
+									</select>
+								</div>
+	                        </div>
+	                        <div class="_inner">
+	                            <label>Receiving Country</label>
+	                            <div id="country1" class="dropDown">
+	                                <div id="country1" class="dropDown">
+										<select 
+										name = "sendingCountry"
+										class="dropBtn txtBox cmnCountryBox"
+										formControlName = "receivingCountry"
+										(change) = "getCalcolatorListObject()"
+
+										>
+										<option *ngFor = "let rcountry of RXCountries" [value]="rcountry.CountryID">{{rcountry.Country}}</option>
+	
+										</select>
+									</div>
+	                            </div>     
+	                        </div>
+	                        <div class="_inner flex countField">
+	                        	<div class="smColL inner">
+	                        		<label>Send Money</label>
+	                        		<div class="smIcoField">
+										<span class="active">{{sendCurrency}}</span>
+
+
+                                        <input 
+                                            type="text"
+                                            name="amountToReceive" 
+                                            class="txtBox"
+                                            formControlName = "amountToSend"
+											(keyup) = "calculateReceivingMoney()"
+                                            
+                                          >
+										  <div *ngIf="amountMessage != '' && amountToSend?.value != null"
+										  class="text-danger">
+										  <small>{{amountMessage}}</small>
+								  		</div>
+                                    </div>
+	                        	</div>
+	                        	<div class="smColR inner">
+	                        			<label>Receiving Money</label>
+										<div class="smIcoField">
+											<select 
+												name="deliveryCurrency"
+												formControlName="deliveryCurrency"
+												(change) = "getAvailableRates()"
+												>
+													<option *ngFor = "let dCurency of deliveryCurencies" class="active" [value] = "dCurency.cur">
+														{{dCurency.cur}}
+													</option>
+											</select>
+	
+											<input 
+												type="text"
+												name="amountToReceive" 
+												class="txtBox"
+												formControlName = "amountToReceive"
+                                            	(keyup) = "calculateSendingMoney()"
+												
+											  >
+										</div>
+										</div>
+
+	                        		
+	                        </div>
+	                        <div class="_inner text-center hintStyle">
+	                        	<p>1000  &nbsp;  <small class = 'active'> {{rxCountryCurrency}} </small> &nbsp;<strong class = 'equals' > 
+									= 
+								</strong>&nbsp; &nbsp;{{priceOfthousend}} <small class = 'active'>{{sendCurrency}} </small>&nbsp;</p>
+	                        </div>
+                		</div>
+                	</div>
+                </div> 
+            </form>
+        </div>
+    </div>
+</section>
+<!-- <section class="cmnSec">
+	<div class="contain">
+		<div class="flex">
+			<div class="bigCalculate">
+				<h2>Global from day one</h2>
+				<p>Increase conversion with Dutch customers by enabling iDEAL—the most popular payment method in the Netherlands, with 57% share of online payments.</p>
+				<p>Accept all major debit and credit cards from customers around the world. Card payments make up over 40% of global online payments.</p>
+			</div>
+		</div>
+	</div>
+</section> -->
+<section class="cmnSec mobileFeature">
+    <div class="contain">
+        <div class="cmnHeading text-center">
+            <h2>Make easy, fast, secure money transfare use altrs App</h2>
+      
+<div class="bTn">
+                <a href = 'https://play.google.com/store/apps/details?id=moneytransfers.altras.co.uk.altrasmoneytransfers&hl=en_US&gl=US' class="webBtn" style="display: block;">
+                    <img src="assets/images/ico1.png"> 
+                    <div class="download">
+                        <span>Download on</span>
+                        <br>
+                        <span>Android</span>
+                    </div>
+                </a>
+                <a href = 'https://apps.apple.com/us/app/altras-money-transfer/id1378281180' class="webBtn" style="display: block;">
+                    <img src="assets/images/ico2.png"> 
+                    <div class="download">
+                        <span>Download on</span>
+                        <br>
+                        <span>iOS</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+<div id="chat-circle" class="btn btn-raised">
+    <div id="chat-overlay"></div>
+    <i class="material-icons fa fa-comments-o"></i>
+</div>
+
+<div class="chat-box">
+<div class="chat-box-header">
+  <p>Let's Chat? - Online</p>
+  <span class="chat-box-toggle minimizeToggle"><i class="fi-minus"></i></span>
+  <span class="chat-box-toggle"><i class="fi-cross"></i></span>
+</div>
+<div class="chat-box-body" id="inboxNew">
+  <div class="chat-box-overlay">   
+  </div>
+  <div class="chat-logs chat">
+     <div class="buble me">
+        <div class="ico"><img src="<?= $baseurl ?>images/users/4.jpg" alt=""></div>
+        <div class="outerText">
+            <div class="txt">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, temporibus porro ipsam facere ipsum tenetur quaerat laudantium saepe beatae et est laborum doloremque.</p>
+                <p>In debitis maiores libero excepturi! Incidunt, consectetur eius eveniet inventore quidem exercitationem! Vel alias qui officiis similique optio non dolore assumenda itaque.</p>
+            </div>
+        </div>
+    </div>
+    <div class="buble you">
+        <div class="ico"><img src="<?= $baseurl ?>images/users/1.jpg" alt=""></div>
+        <div class="outerText">
+            <div class="myName">
+                Aleena Justin
+            </div>
+            <div class="txt">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit, temporibus porro ipsam facere ipsum tenetur quaerat laudantium saepe beatae et est laborum doloremque.</p>
+                <p>In debitis maiores libero excepturi! Incidunt, consectetur eius eveniet inventore quidem exercitationem! Vel alias qui officiis similique optio non dolore assumenda itaque.</p>
+            </div>
+        </div>
+    </div>
+  </div><!--chat-log -->
+</div>
+<div class="chat-input">      
+  <form>
+    <input type="text" id="chat-input" placeholder="Send a message..."/>
+    <button type="button" class="atchBtn uploadImg atchBtnNew" data-image-src=""><i class="fa fa-paperclip"></i></button>
+    <input type="file" id="uploadFile" name="uploadFile" class="uploadFile" data-file="">
+  <button type="submit" class="chat-submit" id="chat-submit"><i class="material-icons">send</i></button>
+  </form>      
+</div>
+</div>

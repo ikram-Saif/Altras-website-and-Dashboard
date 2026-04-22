@@ -1,0 +1,73 @@
+<main>
+              
+                    <div class="dashForms">
+                        <form 
+                        [formGroup]="paymentPoientCountriesForm"
+
+                        >
+                            <div class="flex flex-2 brancheLst">
+                                <div class="inner">
+                                    <label>Customer Company</label>
+                                    <select class="txtBox"
+                                    formControlName="country"
+                                    (change) = 'getCountryBranches()'
+                                    
+                                    >
+                                        <option *ngFor = 'let country of paymentPoientCountries' [value] = 'country.CountryCode'>{{country.Country}}</option>
+                                        
+                                    </select>
+                                    <!-- <div class="bTn">
+                                        <button type="submit" name="" class="webBtn colorBtn">Submit</button>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="flex flex-2 branchLst">
+                               <div class="inner" *ngFor = 'let branch of branchesDetails index as b'>
+                                    <div class="branchListing">
+                                        
+                                        <ul>
+                                            <li >
+                                                <h4>Office Name</h4>
+                                                <p>{{branch.details.office}}</p>
+                                            </li>
+                                            <li>
+                                                <h4>Address</h4>
+                                                <p>{{branch.details.address}}</p>
+                                            </li>
+                                            <li>
+                                                <h4>Working Hours</h4>
+                                                <p>{{branch.details.Working_Hours}}</p>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" data-popup="mapBranches" class="popBtn mapViewBtn">View on Map</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="popup" data-popup="mapBranches">
+                                        <div class="tableDv">
+                                            <div class="tableCell">
+                                                <div class="contain">
+                                                    <div class="_inner">
+                                                        <div class="crosBtn"></div>
+                                                        <h2>{{branch.details.office}}</h2>
+                                                        <div class="map">
+                                                            <agm-map [latitude]='branch.position.lat' [longitude]='branch.position.lng'>
+                                                                <agm-marker [latitude]='branch.position.lat' [longitude]='branch.position.lng'></agm-marker>
+                                                              </agm-map>
+                                                              <!-- <agm-map [latitude]="x" [longitude]="y">
+                                                                <agm-marker [latitude]="x" [longitude]="y"></agm-marker>
+                                                              </agm-map> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                               
+                            </div>
+                        </form>
+                    </div>
+</main>
+

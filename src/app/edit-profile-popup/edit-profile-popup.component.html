@@ -1,0 +1,386 @@
+<div class="popup" data-popup="editProfile"  *ngIf = "editOption == 'Address'">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <div class="minimizeBtn"></div>
+                    <h2>Edit Custmer {{editOption}}</h2>
+                    <div class="dashForms editReceiverFrms">
+                        <form 
+                          
+                            [formGroup] = "editAddressForm"
+                            (ngSubmit) = "updateCustomerAddress()"
+                        >
+                            <div class="flex flex-2">
+                               
+                                <div class="inner" style = "width:100% ; padding-bottom: 0;">
+                                    <input 
+                                        type="text" 
+                                        class="txtBox"
+                                        name = "search_bar"
+                                        formControlName = "search_bar"
+                                        placeholder="Search Post Code"
+                                        (keyup) = "searchAddress()"
+                                        
+                                    >
+                                    <div [className] = "showSearchResultList? 'showAddressResult':'hideAddressResult'"style = "background-color:white;">
+                                        <div *ngFor = "let customerLookup of customerLookupQuery index as x">
+                                            <ul style = "padding:2% ; margin: 1%;">
+                                                <li *ngFor = "let labels of customerLookup.labels" 
+                                                    (click) = "getMoreLoockupResult(customerLookup.count ,customerLookup.id)"
+                                                >{{labels}}  <span class = 'text-small'> ( {{customerLookup.count}} more)</span></li>
+                                            </ul>
+    
+                                        </div>
+                                     </div>
+                                </div>
+                                
+                                 <div class="inner" *ngIf ="customerPostcode?.value != null">
+                                    <label>Customer Post Code</label>
+                                    <input 
+                                        type="text"
+                                        name="customerPostcode"
+                                        id="address-zip"
+                                        class="txtBox"
+                                        formControlName = "customerPostcode"
+                                        placeholder="Please Enter your Post Code"
+                                        required
+                                        
+                                    >
+                                </div>
+                                <div class="inner" *ngIf ="customerAddress1?.value != null">
+                                    <label>Customer Address (1)</label>
+                                    <input 
+                                        type="text"
+                                        name="customerAddress1" 
+                                        id="address-line-1"
+                                        class="txtBox"
+                                        formControlName="customerAddress1"
+                                        required
+                                    >
+                                </div>
+                                <div class="inner" *ngIf ="customerAddress2?.value != null">
+                                    <label>Customer Address (2)</label>
+                                    <input 
+                                        type="text" 
+                                        name="customerAddress2"
+                                        id="address-line-2"
+                                        class="txtBox" 
+                                        formControlName = "customerAddress2"
+                                    >
+                                   
+                                </div>
+                          
+                                <div class="inner" *ngIf ="customerCountry?.value != null">
+                                    <label>Country</label>
+                                    <input 
+                                        type="text" 
+                                        name="customerCountry"
+                                        id="address-town"
+                                        class="txtBox" 
+                                        formControlName = "customerCountry"
+                                    >
+                                   
+                                </div>
+                                <div class="inner" *ngIf ="customerTown?.value != null">
+                                    <label>Customer Town</label>
+                                    <input 
+                                        type="text" 
+                                        name="customerTown"
+                                        class="txtBox" 
+                                        id="address-country"
+                                        formControlName = "customerTown"
+                                    >
+                                   
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="bTn text-center" *ngIf = "fullAddress != null">
+                                <button type="submit" class="webBtn colorBtn"
+                                [disabled] = "!editAddressForm.valid"
+                                >Save</button>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+<div class="popup" data-popup="editProfile"  *ngIf = "editOption == 'Email'">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <div class="minimizeBtn"></div>
+                    <h2>Edit Custmer {{editOption}}</h2>
+                    <div class="dashForms">
+                        <form 
+                            [formGroup] = 'editEmailForm'
+                            (ngSubmit) = 'editCustomerEmail()'
+                        >
+                            <div class="flex">
+                               
+                                <div class="inner">
+                                    <input 
+                                        type="email"
+                                        name="customerEmail"
+                                        class="txtBox"
+                                        placeholder="Enter a new email"
+                                        formControlName = "customerEmail"
+                                        required
+                                    >
+                                    <div *ngIf="customerEmail && customerEmail.invalid && (customerEmail.touched || customerEmail.dirty)"
+									class="text-danger"
+									>
+							
+									<small *ngIf="customerEmail.errors?.required">
+										email is required.
+									</small>
+									<small *ngIf="customerEmail.errors?.pattern">
+										email not valid.</small>
+								</div>
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="bTn text-center">
+                                <button type="submit" class="webBtn colorBtn"
+                                [disabled] = "!editEmailForm.valid"
+                                >Save</button>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+    
+<div class="popup" data-popup="editProfile"  *ngIf = "editOption == 'Phone'">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn" (click) = "getVerCode = false" ></div>
+                    <!-- <div class="minimizeBtn"></div> -->
+                    <div *ngIf = "!getVerCode">
+                        <h2>Edit Custmer {{editOption}}</h2>
+                    <div class="dashForms editReceiverFrms">
+                        <form 
+                       
+                            name = 'editPhoneForm'
+                            [formGroup] = 'editPhoneForm'
+                            (ngSubmit) = 'sendVervicationCodeToNewPhone()'
+                        >
+                            <div class="flex flex-2">
+                               
+                                <div class="inner">
+                                    <input 
+                                        type="tel"
+                                        name="customerPhone"
+                                        class="txtBox"
+                                        placeholder="New phone"
+                                        formControlName = "customerPhone"
+                                        
+                                    >
+                                </div>
+                               
+                            </div>
+                            
+                            <div class="bTn text-center">
+                                <button type="submit" class = 'webBtn colorBtn' 
+                                [disabled] = "!editPhoneForm.valid"
+
+                                >send</button>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+                    <!-- if valid phone number verfication code will send  and getVerCode varible become true then verfication form will display -->
+                    <div *ngIf = "getVerCode">
+                        <h2>Enter Verification Code</h2>
+                    <div class="dashForms editReceiverFrms">
+                        <form 
+                        
+                       name = 'verCodeForm'
+                       [formGroup] = 'verCodeForm'
+                       (ngSubmit) = 'updateCustomerPhone()'
+                   >
+                       <div class="flex flex-2">
+                       
+                           <div class="inner">
+                               <input 
+                                   type="tel"
+                                   name="verCode"
+                                   class="txtBox"
+                                   placeholder="Enter Vervication Code"
+                                   formControlName = "verCode"
+                                   
+                               >
+                           </div>
+                       
+                       </div>
+                       
+                       <div class="bTn text-center">
+                           <button type="submit" class="webBtn colorBtn" 
+                           >Save</button>
+                       </div>
+                   </form>
+                           
+                    </div> 
+                </div>
+                        
+                </div>
+                   
+        </div>
+        </div>
+</div>
+</div>
+
+<div class="popup" data-popup="editProfile"  *ngIf = "editOption == 'Password'">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <div class="minimizeBtn"></div>
+                    <h2>Edit Custmer {{editOption}}</h2>
+                    <div class="dashForms editReceiverFrms">
+                        <form 
+                            name = 'editPasswordForm'
+                            [formGroup] = 'editPasswordForm'
+                            (ngSubmit) = 'editCustomerPassword()'
+                        >
+                            <div class="flex flex-2">
+                               
+                                <div class="inner">
+                                    <label>Current Password</label>
+                                    <input 
+                                        type="password"
+                                        name="oldPassword"
+                                        class="txtBox"
+                                        formControlName="oldPassword"
+
+                                    >
+                                </div>
+                                <div class="inner">
+                                    <label>New Pasword</label>
+                                    <input type="password" name="password"  class="txtBox"
+                                    formControlName="password"
+
+                                    >
+                                </div>
+                                <div class="inner">
+                                    <label>Confirm Pasword</label>
+                                    <input type="password" name="confirmPassword"  class="txtBox"
+                                    formControlName="confirmPassword"
+                                    >
+                                    <div *ngIf="confirmPassword && confirmPassword.invalid 
+                                    && (confirmPassword.touched || confirmPassword.dirty) || editPasswordForm.errors?.passwordNotMatch"
+                                         class="text-danger"
+                                         >
+                                         <small *ngIf="editPasswordForm.errors?.passwordNotMatch">
+                                             Your password and confirm password must be match
+                                         </small>
+                                     </div>
+                                </div>
+                                                              
+                            </div>                           
+                            <div class="bTn text-center">
+                                <button type="submit" class="webBtn colorBtn"
+                                [disabled] = "!editPasswordForm.valid"
+                                >Save</button>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+<div class="popup" data-popup="editProfile"  *ngIf = "editOption == 'EditAll'">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <div class="minimizeBtn"></div>
+                    <h2>{{editOption}}</h2>
+                    <div class="dashForms editReceiverFrms">
+                        <form 
+                            name = 'editAllProfileForm'
+                            [formGroup]= "editAllProfileForm"
+                            (ngSubmit) = "editAllProfile()"
+                        >
+                            <div class="flex">
+                               
+                                <div class="inner">
+                                    <input 
+                                        type="email"
+                                        name="customerEmail"
+                                        class="txtBox"
+                                        placeholder="Enter a new email"
+                                        formControlName = "customerEmail"
+                                        
+                                    >
+                                </div>
+                                
+                                <div class="inner">
+                                    <label>Current Password</label>
+                                    <input 
+                                        type="password"
+                                        name="oldPassword"
+                                        class="txtBox"
+                                        formControlName = "oldPassword"
+                                    >
+                                </div>
+                                <div class="inner">
+                                    <label>New Pasword</label>
+                                    <input type="password" name="newPassword"  class="txtBox"
+                                    formControlName="newPassword"
+
+                                    >
+                                </div>
+                                <div class="inner">
+                                    <label>Confirm Pasword</label>
+                                    <input type="password" name="confirmPassword"  class="txtBox"
+                                    formControlName="confirmPassword"
+                                    >
+                                </div>
+                                
+                                
+                            </div>
+                            
+                            <div class="bTn text-center">
+                                <button type="submit" class="webBtn colorBtn"
+                                [disabled] = "!editAllProfileForm.valid"
+
+                                >Save</button>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        </div>
+</div>
+<!-- <script>
+          new clickToAddress({
+              accessToken: 'bf0f9-003e9-4c537-00e33',
+              dom: {
+                  search:     'search-bar',
+                  town:       'address-town',
+                  postcode:   'address-zip',
+                  line_1:     'address-line-1',
+                  line_2:     'address-line-2',
+                  country:    'address-country'
+              },
+              domMode: 'id'
+          });
+      </script> -->
+  
+

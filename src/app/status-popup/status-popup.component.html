@@ -1,0 +1,23 @@
+<script type="text/javascript" src="<?= $baseurl ?>js/main.js?v=1.0"></script>
+<script type="text/javascript">
+      AOS.init({
+        easing: 'ease-in-out-sine',
+        disable: window.innerWidth <= 767
+      });
+</script>
+<div class="popup" data-popup="transectionStatus">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <h2>Transection Status</h2>
+                    <ul class="transectionLstngPopup transectionStatusLst">
+                        <li *ngFor = "let statusArr of transactionStatus index as s">{{statusArr.log_text_en}} <span>{{statusArr.log_date}}</span></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

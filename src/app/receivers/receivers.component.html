@@ -1,0 +1,64 @@
+
+                    <div class="dashSideBtn">
+                        <a class="webBtn colorBtn"  href="#" routerLink = '/dashboard/add-receiver'  >Add Receiver</a>
+                    </div>
+                <div class="receiversLst">
+                    <div class="flex flex2 ne_gtive">
+                        <!-- -----------receiver cards------- -->
+                        <div class="col" *ngFor="let receiver of receiversList index  as r">
+                            <div class="_card receiverCars">
+                                <a href="sendMoney.php" class="sendIcon">
+                                    <img src="assets/images/users/transfer.png">
+                                </a>
+                                <div class="flex">
+                                    <div class="sideIco">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <div class="sideCntnt">
+                                        <h4>{{receiver.EName}}</h4>
+                                        <span class="phone">{{receiver.PhoneNo}}</span>
+                                    </div>
+                                </div>
+                                <div class="flex infoId">
+                                    <div class="leftCol">
+                                        <h5>ID:{{receiver.ReceiverID}}</h5>
+                                    </div>
+                                    <div class="rightCol">
+                                        <h5>{{receiver.Country}} / {{receiver.City}}</h5>
+                                    </div>
+                                </div>
+                                <div class="cardFooter">
+                                    <div class="flex">
+                                        <a href="javascript:void(0)" class="footerCol popBtn" data-popup="receiverDetail" 
+                                           (click)="getReceiverDetails(receiver.ReceiverID)"
+                                        >
+                                            <span><i class="fa fa-info-circle"></i></span>
+                                            <h5>Details</h5>
+                                        </a>
+                                        <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editReceiver"
+                                        (click)="getReceiverDetails(receiver.ReceiverID)"
+                                        >
+                                            <span><i class="fa fa-edit"></i></span>
+                                            <h5>Edit</h5>
+                                        </a>
+                                        <a  class="footerCol" 
+                                        [swal]="{ title: 'Are you sure you wabt to delete', showCancelButton: true }"
+                                        (confirm)="deleteReceiver(receiver.ReceiverID)"
+                                        (dismiss)="handleDismiss()" 
+                                        >
+                                            <span><i class="fa fa-trash"></i></span>
+                                            <h5>Delete</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ----------end------ -->
+                      
+                      
+                    </div>
+                </div>
+            
+
+<app-edit-reciver-details-popup [receiverDetails] = "receiverDetails"></app-edit-reciver-details-popup>
+<app-reciver-details-popup [receiverDetails] = "receiverDetails"></app-reciver-details-popup>

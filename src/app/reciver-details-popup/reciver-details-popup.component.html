@@ -1,0 +1,30 @@
+<div class="popup" data-popup="receiverDetail">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn"></div>
+                    <h2>Receiver Details</h2>
+                        <ul class="transectionLstngPopup">
+                            <li *ngIf = "receiverDetails.EName  !='' " >Name <span>{{receiverDetails.EName}}</span></li>
+                            <li *ngIf = "receiverDetails.Country  !='' ">Country <span>{{receiverDetails.Country}}</span></li>
+                            <li *ngIf = "receiverDetails.City  !='' ">City <span>{{receiverDetails.City}}</span></li>
+                            <li *ngIf = "receiverDetails.PhoneNo  !='' ">Phone Number <span>{{receiverDetails.PhoneNo}}</span></li>
+                            <li *ngIf = "receiverDetails.NationalityID && receiverDetails.NationalityID  !='' && receiverDetails.NationalityID != null ">Nationality <span>{{getReceiverNationality(receiverDetails.NationalityID)}}</span></li>
+                            <li *ngIf = "receiverDetails.Purpose_en  !=null ">Transfer Purpose <span>{{receiverDetails.Purpose_en}}</span></li>
+                            <!-- <hr> -->
+                            <li *ngIf = "receiverDetails.Bank_Name  !='' ">Bank Name <span>{{receiverDetails.Bank_Name}}</span></li>
+                            <li *ngIf = "receiverDetails.Bank_Branch  !='' ">Bank Branch <span>{{receiverDetails.Bank_Branch}}</span></li>
+                            <li *ngIf = "receiverDetails.BnkAccountType_en  !='' ">Account Type <span>{{receiverDetails.BnkAccountType_en}}</span></li>
+                            <li *ngIf = "receiverDetails.Bank_Acc_No  !='' ">Account Number <span>{{receiverDetails.Bank_Acc_No}}</span></li>
+                            <li *ngIf = "receiverDetails.ATM_Card_No  !='' ">ATM Card Number <span>{{receiverDetails.ATM_Card_No}}</span></li>
+                            <li *ngIf = "receiverDetails.ATM_EXP_Month  !=0 || receiverDetails.ATM_EXP_Year  !=0">
+                                ATM Expire Date
+                                 <span>{{receiverDetails.ATM_EXP_Month}}/{{receiverDetails.ATM_EXP_Year}}</span>
+                            </li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

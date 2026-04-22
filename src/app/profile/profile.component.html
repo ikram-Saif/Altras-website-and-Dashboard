@@ -1,0 +1,71 @@
+<main>
+    <h1 *ngIf = 'IsProfileUpdate'>update</h1>
+                        
+                    <form action="" method="">
+                        <div class="blk">
+                            <div class="_header">
+                                <h3>Change Profile Image</h3>
+                            </div>
+                            <div class="flexRow flex profileDp">
+                                    <div class="col col1">
+                                        <div class="proDp ico">
+                                            <img src="../images/users/3.jpg" alt="">
+                                        </div>
+                                        <div class="text-center"><button type="button" class="webBtn colorBtn smBtn uploadImg" id="uploadDp" data-image-src="dp"><i class="fi-user"></i> Change Photo</button></div>
+                                        <div class="noHats text-center">Customer ID <span>{{cId}}</span>
+                                        </div>
+                                    </div>
+                            </div>
+
+                        </div>
+                         <input type="file" id="uploadFile" name="uploadFile" class="uploadFile" data-file="">
+                    </form>
+                       
+                        <div class="blk">
+                            <div class="_header">
+                                <h3>Profile Info</h3>
+                            </div>
+                                    <div class="flex">
+                                        <h4>Customer Name </h4><p>{{cName}}</p></div>
+                                        <div class="flex"><h4>Customer Country/Ciy</h4> <p>{{cCountry}}/{{cTown}}</p></div>
+
+                                        <div class="flex"><h4>Customer Address </h4><p>{{cAddress}}</p>
+                                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editProfile"
+                                            (click) = "customerWantToEdit = 'Address'" >
+
+                                            <i class = "fa fa-edit"></i>
+                                             </a>
+                                        </div>
+                                        <div class="flex"><h4>Customer Email</h4> <p>{{cEmail}}</p>
+                                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editProfile"
+                                            (click) = "customerWantToEdit = 'Email'" >
+
+                                            <i class = "fa fa-edit"></i>
+                                            </a>
+                                        </div>
+                                        <div class="flex"><h4>Customer Phone</h4> <p>{{cPhone}}</p>
+                                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editProfile"
+                                            (click) = "customerWantToEdit = 'Phone'" >
+
+                                            <i class = "fa fa-edit"></i>
+                                            </a>
+                                         </div>
+
+                                        <div class="flex"><h4>Customer Password </h4><p type = 'password'>{{cPassword}}</p>
+                                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editProfile"
+                                            (click) = "customerWantToEdit = 'Password'" >
+                                            <i class = "fa fa-edit"></i>
+                                            </a>
+                                        </div>
+
+                                                              
+                        </div>
+                        <div class="bTn text-center">
+                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="editProfile"
+                            (click) = "customerWantToEdit = 'EditAll'" >
+                            <button  class="webBtn colorBtn">Edit All</button>
+                            </a>
+                        </div>
+                        <app-edit-profile-popup [editOption] ="customerWantToEdit" ></app-edit-profile-popup>
+
+</main>

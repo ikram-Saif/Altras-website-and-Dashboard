@@ -1,0 +1,28 @@
+<div class="popup" data-popup="transectionDetails">
+    <div class="tableDv">
+        <div class="tableCell">
+            <div class="contain">
+                <div class="_inner">
+                    <div class="crosBtn" (click) = "cleanTransactionInfo()"></div>
+                    <div class="minimizeBtn"></div>
+                    <h2>Transection History</h2>
+                        <ul class="transectionLstngPopup">
+                            <li>Transection No <span>{{transactionInfo.TransactionID}}</span></li>
+                            <li>Transection Date <span>{{transactionInfo.SentDate}}</span></li>
+                            <li>Status <span>{{transactionInfo.Status}}</span></li>
+                            <li>Receiver Name <span>{{transactionInfo.RxEName}}</span></li>
+                            <li>Receiver Country <span>{{transactionInfo.RxCountry}}</span></li>
+                            <li>Receiver City <span>{{transactionInfo.RxCity}}</span></li>
+                            <li>Receiver Phone <span>{{transactionInfo.RxPhone}}</span></li>
+                            <li>Received Amount <span>{{transactionInfo.SumRec}}</span></li>
+                            <li>Sent Amount <span>{{transactionInfo.SumSend}}</span></li>
+                            <li>Exchange Rate <span>{{transactionInfo.Rate}}</span></li>
+                            <!-- <li>Bank Delivery Fees <span>{{transactionInfo.TransactionID}}</span></li> -->
+                            <li>Service Fees <span>{{transactionInfo.Fees}}</span></li>
+                            <li>Total Paid <span>{{transactionInfo.SumPaid}}</span></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

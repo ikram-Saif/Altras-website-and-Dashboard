@@ -1,0 +1,23 @@
+<main>
+
+            <div class="dashBody">
+                <div class="inboxNew ">
+                    <ul>
+                        <li *ngFor = "let message of inboxMessage">
+                            <a>
+                                <div class="cntntInbox">
+                                    <h4>{{message.MsgTitle}}</h4>
+                                    <p>{{message.MsgBody}}</p>
+                                </div>
+                                <div class="notificationDate date">
+                                    {{message.MsgDate}}
+                                </div>
+                            </a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+    
+
+</main>

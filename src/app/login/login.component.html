@@ -1,0 +1,102 @@
+<main>
+    <section id="cmnFormsCode">
+        <div class="outer">
+            <div class="resiterCustomer formCmnAll flex">
+                <div class="formCntnt">
+                    <h2>Welcome to Altras</h2>
+                </div>
+                <div class="innerFormAll loginForm">
+                    <div class="loginFlex">
+                        <h3>Login</h3>
+                        <div class="flex">
+                            <div class="loginCol">
+                                <form
+                                    [formGroup]="loginForm"
+                                    (ngSubmit)="onSubmit()"
+                                >
+                                    <div class="successPeraRegister">
+                                        <h4>Existing Customer</h4>
+                                    </div>
+                                    <div class="txtGrp">
+                                        <label>Email Address</label>
+                                        <input 
+                                            type="text" 
+                                            name="userName" 
+                                            placeholder="Email Address"
+                                            class="txtBox"
+                                            formControlName="userName"
+                                            required
+                                        >
+                                        <div *ngIf="userName && userName.invalid && (userName.touched || userName.dirty)"
+                                        class="text-danger"
+                                        >
+                                
+                                        <small *ngIf="userName.errors?.required">
+                                            Enter your email
+                                        </small>
+                                        <small *ngIf="userName.errors?.email">
+                                            Enter valid name
+                                        </small>
+                                    </div>
+                                    </div>
+                                    <div class="txtGrp">
+                                        <label>Password</label>
+                                        <input 
+                                            type="password"
+                                            name="password" 
+                                            formControlName="password"
+                                            placeholder="****" 
+                                            class="txtBox"
+                                          >
+                                          <div *ngIf="password && password.invalid && (password.touched || password.dirty)"
+                                                class="text-danger">
+                                
+                                                <small *ngIf="password.errors?.required">
+                                                    Enter your password
+                                                </small>
+                                            </div>
+                                    </div>
+                                    <div class="txtGrp">
+                                        <div class="lblBtn">
+                                            <input type="checkbox" name="" value="" id="remember">
+                                            <label for="remember">Remember me</label>
+                                        </div>
+                                    </div>
+                                    <div class="txtGrp text-center">
+                                        <button type="submit" class="webBtn blueBtn" [disabled]="!loginForm.valid">Sign in</button>
+                                    </div>
+                                    <div class="text-left">
+                                        <a href="#"  routerLink = '/forgot-password' class="forgotPass">Forgot Password?</a>
+                                    </div>
+                                    <!-- <div class="oRLine"><span>OR</span></div>
+                                    <div class="navLnk text-center">
+                                        <span>Do you have an account?</span>
+                                        <a href="signup.php" class="color">Sign up</a>
+                                    </div> -->
+                                </form>
+                            </div>
+                            <div class="loginCol">
+                                <form action="" method="">
+                                    <div class="successPeraRegister">
+                                        <h4>New to Altras?</h4>
+                                    </div>
+                                    
+                                    <!-- <div class="txtGrp text-center">
+                                        <a href="?" class="webBtn colorBtn flBtn">Register Now</a>
+                                    </div> -->
+                                    <div class="text-left qusTxt">
+                                        <h3>Creating an account takes <br> less than a minute.</h3>
+                                    </div>
+                                     <div class="txtGrp text-center">
+                                        <a href="#" routerLink = '/registeration' class="webBtn colorBtn flBtn">Register Now</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    </main>

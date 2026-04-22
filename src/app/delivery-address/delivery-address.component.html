@@ -1,0 +1,69 @@
+<main>
+                  
+                    <div class="dashForms">
+                        <form action="" method="" 
+                            [formGroup]="deliveryAddressForm"
+
+                        >
+                            <div class="flex flex-2">
+                                <div class="inner">
+                                    <label>Receiver Country</label>
+                                    <select 
+                                        name="receiverCountry" 
+                                        class="txtBox"
+                                        formControlName = 'receiverCountry'
+                                        (change) = 'getCountryState()'
+                                    >
+                                        <option  *ngFor = 'let rcountry of getRXCountriesList' [value]='rcountry.CountryID'>{{rcountry.Country}}</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="inner" *ngIf = 'countryStateList.length > 0'>
+                                    <label>Receiver State | district</label>
+                                    <select 
+                                     name="countryState"
+                                     class="txtBox"
+                                     formControlName = 'countryState'
+                                     >
+                                        <option *ngFor = 'let state of countryStateList' [value] = 'state.StateID'>{{state.StateName}}</option>
+       
+                                    </select>
+                                </div>
+                                <div class="inner">
+                                    <label>Receiver City</label>
+                                    <select 
+                                        name="stateCity" 
+                                        class="txtBox"
+                                        formControlName = 'stateCity'
+                                        (change) = 'getDeliveryAddress()'
+                                        >
+                                        <option  *ngFor = 'let city of stateCitiesList' [value] = 'city.CityID'>{{city.City}}</option>
+                                
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- <div class="bTn text-center">
+                                <button type="submit" name="" class="webBtn colorBtn">Submit</button>
+                            </div> -->
+                            <div class="flex flex-2 branchLst">
+                                <div class="inner" *ngFor = 'let address of deliveryAddress index as d'>
+                                     <div class="branchListing">
+                                         
+                                         <ul>
+                                             <li>
+                                                 <h4>Country</h4>
+                                                 <p>{{address.Country_Name}}</p>
+                                             </li>
+                                             <li>
+                                                 <h4>Delivery Address</h4>
+                                                 <p>{{address.Delivery_Address}}</p>
+                                             </li>
+                                          
+                                         </ul>
+                                     </div>
+                                     
+                                 </div>
+                             </div>
+                        </form>
+                    </div>
+</main>

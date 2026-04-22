@@ -1,0 +1,244 @@
+<div class="dashForms">
+    <form 
+        [formGroup] = 'addReceiverForm'
+        (ngSubmit) = 'addNewReceiver()'
+    >
+        <div class="flex flex-2">
+            <div class="inner">
+                <label>Receiver Country</label>
+                <select 
+                name="rxcountry"
+                id=""
+                class="txtBox"
+                formControlName = "rxcountry"
+                (change) = 'getCites()'
+                >
+                    <option *ngFor = 'let rcountry of countriesRx' [value]="rcountry.CountryID">{{rcountry.Country}}</option>
+
+                </select>
+                <div *ngIf="rxcountry && rxcountry.invalid || rxcountry.touched"
+                    class="text-danger"
+                >
+        
+                <small *ngIf="rxcountry.errors?.required">
+                   Receiver Country  is required.
+                </small>
+            </div>
+            </div>
+            <div class="inner">
+                <label>Receiver City</label>
+                <select 
+                name="city" 
+                class="txtBox"
+                formControlName = 'city'
+                >
+                <option *ngFor = 'let countryCity of cities' [value]="countryCity.CityID">{{countryCity.City}}</option>       
+                </select>
+                <div *ngIf="city && city.invalid && city.touched" class="text-danger">
+                    <small *ngIf="city.errors?.required">
+                    City  is required.
+                    </small>
+                </div>
+            </div>
+            <div class="inner">
+                <label>Receiver Arabic Name</label>
+                <input type="text" 
+                    name="aName"
+                    class="txtBox" 
+                    placeholder="receiver full arabic name"
+                    formControlName = 'aName'
+                 >
+                 <div *ngIf="aName && aName.invalid && aName.touched" class="text-danger">
+                    <small *ngIf="aName.errors?.required">
+                        Receiver Arabic Name is required.
+                    </small>
+                </div>
+            </div>
+            <div class="inner">
+                <label>Receiver English Name</label>
+                <input 
+                    type="text"
+                    name="eName"
+                    class="txtBox" 
+                    placeholder="receiver full english name"
+                    formControlName = "eName"
+                    >
+                    <div *ngIf="eName && aName.invalid && eName.touched" class="text-danger">
+                        <small *ngIf="eName.errors?.required">
+                            Receiver English Name is required.
+                        </small>
+                    </div>
+            </div>
+            <div class="inner">
+                <label>Receiver Phone Number</label>
+                <input 
+                    type="tel"
+                    name="phone"
+                    class="txtBox"
+                    placeholder="enter receiver Phone number"
+                    formControlName = "phone"
+                    >
+                    <div *ngIf="phone && phone.invalid || phone.touched"
+                    class="text-danger"
+                >
+        
+                <small *ngIf="phone.errors?.required">
+                   phone  is required.
+                </small>
+            </div>
+            </div>
+            <div class="inner">
+                <label>Receiver Nationality</label>
+                <select
+                    name="receiverNationality"
+                    class="txtBox"
+                    formControlName = "receiverNationality"
+                  >
+                    <option *ngFor = "let nat of nationality"
+                     [value]="nat.CountryID">{{nat.Country}}</option>
+                
+                </select>
+            </div>
+            <div class="inner">
+                <label>Purpose of Transfer</label>
+                <select 
+                    name="purpose" 
+                    class="txtBox"
+                    formControlName = "purpose"
+                 >
+                    <option  *ngFor = 'let purpose of purposList' [value]="purpose.PurposeID">{{purpose.Purpose}}</option>
+                    
+                </select>
+                <div *ngIf="purpose && purpose.invalid || purpose.touched" class="text-danger">
+                    <small *ngIf="purpose.errors?.required">
+                        Purpose of Transfer is required.
+                    </small>
+                </div>
+            </div>
+            <div class="inner" >
+                <label>Delivery Method</label>
+                <select
+                    name="deliveryMethod"
+                    class="txtBox"
+                    formControlName = "deliveryMethod"
+                  >
+                    <option *ngIf = "checkCountry() == true"> select delivery method</option>
+                    <option value = "cash">Cash</option>
+                    <option  value = "card" *ngIf = "checkCountry() == true">Card</option>
+                </select>
+            </div>
+            <div class="flex flex-2" *ngIf = "checkDeliveryMethod() == true">
+                <div class="inner">
+                    <label>Receiver Bank</label>
+                    <select 
+                        name="receiverBank"
+                        class="txtBox"
+                        formControlName = "receiverBank"
+                    >
+                    <option *ngFor="let bank of sudaneseBanks"[ngValue] = "bank.BankID">{{bank.BankName}}</option>
+                    </select>
+                </div>
+                <div class="inner">
+                    <label>Bank Account Numbere</label>
+                    <input 
+                        type="text"
+                        name="bankAccountNo"
+                        class="txtBox"
+                        formControlName = "bankAccountNo"
+                    >
+                </div>
+                <div class="inner">
+                    <label>Bank Account Type</label>
+                    <select 
+                        name="bankAccountType"
+                        class="txtBox"
+                        formControlName = "bankAccountType"
+                    >
+                    <option *ngFor="let accoType of bankAccountTypeList" [ngValue] = "accoType.account_type_id">{{accoType.account_type_en}}</option>
+                    </select>
+                </div>
+                <div class="inner">
+                    <label>Bank Account Branch</label>
+                    <input
+                        type = "text" 
+                        name="bankBranch"
+                        class="txtBox"
+                        formControlName = "bankBranch"
+                    >
+                </div>
+                <div class="inner">
+                    <label>ATM Card Number</label>
+                    <input 
+                        type="text"
+                        name="ATMNumber"
+                        class="txtBox"
+                        formControlName = "ATMNumber"
+                        (change)="validate_ATM_Maxlength_and_starter()" 
+                    >
+                    <div *ngIf="ATMNumber && ATMNumber.invalid && ATMNumber.touched"
+                    class="text-danger"
+                    >
+            
+                    <small *ngIf="!ATMNumber.valid">
+                        {{validate_ATM_Maxlength_and_starter()}}.
+
+                    </small>
+                   
+                    <small *ngIf="ATMNumber.errors?.pattern">
+                        Should be anumber.
+                     </small>
+                     
+                </div>
+                </div>
+                <div class="inner">
+                    <label>Confirm ATM Card Number</label>
+                    <input 
+                        type="text"
+                        name="confirmCardNum"
+                        class="txtBox"
+                        formControlName = "confirmCardNum"
+                    >
+                    <div *ngIf="confirmCardNum && confirmCardNum.invalid && (confirmCardNum.touched || confirmCardNum.dirty) || addReceiverForm.errors?.ATMNotMatch"
+                    class="text-danger"
+                    >
+            
+                    <small *ngIf="confirmCardNum.errors?.pattern">
+                        Should be anumber.
+                     </small>
+                     <small *ngIf="addReceiverForm.errors?.ATMNotMatch">
+                        Your card number and confirm  must be match
+                    </small>
+                </div>
+                </div>
+
+                    <div class="inner">
+                        <label>ATM Card Expired Date</label>
+                        <label>Month</label>
+                        <select 
+                            name="ATMExMonth"
+                            class="txtBox"
+                            formControlName = "ATMExMonth"
+                        >
+                        <option *ngFor = "let month of months" [disabled] = "currentMonth != month">{{month}}</option> 
+                        </select>
+                    </div>
+                    <div class="inner">
+
+                    <label>Year</label>
+                    <select 
+                        name="ATMExYear"
+                        class="txtBox"
+                        formControlName = "ATMExYear"
+                    >
+                    <option *ngFor = "let year  of yearsList">
+                        {{year}}
+                    </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="bTn text-center">
+            <button type="submit" name="" class="webBtn colorBtn" [disabled] = "!addReceiverForm.valid">Add Receiver</button>
+        </div>
+    </form>
+</div>

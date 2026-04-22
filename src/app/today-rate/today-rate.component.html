@@ -1,0 +1,123 @@
+                    <div class="dashForms">
+                        <form 
+                         [formGroup]="todayRateForm"
+                         >
+                            <div class="flex flex-2">
+                                <div class="inner">
+                                    <label>Receiving Country</label>
+                                    <select 
+                                        name="receivingCountry"
+                                        class="txtBox"
+                                        formControlName="receivingCountry"
+                                        (change) = "getCalcolatorListObject()"
+                                     >
+
+                                        <option *ngFor = "let rcountry of RXCountries" [value]="rcountry.CountryID">{{rcountry.Country}}</option>
+                                        
+                                    </select>
+                                </div>
+                                <div class="inner">
+                                    <label>Delivery Method</label>
+                                    <select 
+                                        name="deliveryMethod"
+                                        class="txtBox"
+                                        formControlName="deliveryMethod"
+                                        (change) ="fillDeliveryCurencies()">
+                                        <option *ngFor = "let dMethod of deliveryMethods" [value] = "dMethod.method">{{dMethod.method =="1"?"Cash Pickup": "Bank"}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="flex countField">
+                                <div class="inner">
+                                    <div class="smIcoField">
+                                        <select 
+                                            name="deliveryCurrency"
+                                            formControlName="deliveryCurrency"
+                                            (change) = "getAvailableRates()"
+                                            >
+                                                <option *ngFor = "let dCurency of deliveryCurencies" class="active" [value] = "dCurency.cur">
+                                                    {{dCurency.cur}}
+                                                </option>
+                                        </select>
+
+                                        <input 
+                                            type="text"
+                                            name="amountToReceive" 
+                                            class="txtBox"
+                                            formControlName = "amountToReceive"
+                                            (keyup) = "calculateSendingMoney()"
+                                            
+                                          >
+                                    </div>
+                                </div>
+                                 <div class="inner">
+                                    <div class="smIcoField">
+                                        <span class="active">{{sendCurrency}}</span>
+                                        <input 
+                                        type="text"
+                                        name="amountToSend" 
+                                        class="txtBox"
+                                        formControlName = "amountToSend"
+                                        (keyup) = " calculateReceivingMoney()"
+                                      >  
+                                    <div *ngIf="amountMessage != '' && amountToSend?.value != null"
+                                            class="text-danger">
+                                            <small>{{amountMessage}}</small>
+                                    </div>
+                                 
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="flex flex-2 flex countField" *ngFor ="let extracalcolatorInfo of deliveryCurencies">
+                                    <div class="inner">
+                                        <div class="smIcoField">
+                                            <span>{{sendCurrency}}</span>
+                                            <input 
+                                                type="text"
+                                                name="" 
+                                                class="txtBox"
+                                                value="1"
+                                            >
+                                        </div>
+                                    </div>
+                                    <div class="inner">
+                                        <div class="smIcoField">
+                                            <span>{{extracalcolatorInfo.cur}}</span>
+                                            <input 
+                                            type="text"
+                                             name="" 
+                                             class="txtBox"
+                                             [value] = "priceOfOne"
+
+                                             >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-2 flex countField">
+
+                                <div class="inner">
+                                    <div class="smIcoField">
+                                        <span>{{rxCountryCurrency}}</span>
+                                        <input 
+                                         type="text"
+                                         name="" 
+                                         value="1000" 
+                                         class="txtBox"
+                                         >
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="smIcoField">
+                                        <span>{{sendCurrency}}</span>
+                                        <input 
+                                            type="text" 
+                                            name="" 
+                                            class="txtBox"
+                                            [value] = "priceOfthousend"
+                                         >
+                                    </div>
+                                </div> 
+                            </div> 
+                        </form>
+                    </div>

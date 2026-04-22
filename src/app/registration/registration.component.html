@@ -1,0 +1,572 @@
+<main>
+    <section id="cmnFormsCode">
+        <div class="outer">
+            <div class="resiterCustomer formCmnAll flex">
+                <div class="formCntnt">
+                    <h2>Welcome to Altras</h2>
+                    <h4>Let's get your account set up!</h4>
+                </div>
+                <div class="innerFormAll">
+                    <form 
+                         name = 'registerForm'
+                        [formGroup]="registerForm"
+                        (ngSubmit)="onSubmit()"
+                        >
+                        <fieldset>
+                            <div>
+                            <div class="flex flex-2">
+                                <div class="inner">
+                                    <label>Country</label>
+                                    <select 
+                                        name="country" 
+                                        class="txtBox"
+                                        formControlName="country"
+                                        required
+                                    >
+                                        <option [ngValue]="null" selected disabled>Choose your country</option>
+                                        <option  *ngFor = 'let country of countries index as y'>{{country.Country}}</option>
+                                        
+                                    </select>
+                                    <div *ngIf="country && country.invalid && country.touched"
+                                    class="text-danger"
+                                    >
+                            
+                                    <small *ngIf="country.errors?.required">
+                                       Country is required.
+                                    </small>
+                                </div>
+
+                                </div>
+                                <div class="inner">
+                                    <label>Recieving Country</label>
+                                    <select 
+                                        name="reciveCountry"
+                                        
+                                        class="txtBox"
+                                        formControlName = "reciveCountry"
+                                    >
+                                        <option [ngValue]="null" selected disabled>Choose your  reciving country</option>
+                                        
+                                        <option  *ngFor = 'let reciveCountry of countriesRx index as r'>{{reciveCountry.Country}}</option>                           
+                                    </select>
+                                    <div *ngIf="reciveCountry && reciveCountry.invalid && reciveCountry.touched"
+                                    class="text-danger"
+                                    >
+                            
+                                    <small *ngIf="reciveCountry.errors?.required">
+                                       Reciveing country is required.
+                                    </small>
+                                </div>
+                                </div>
+                                <div class="inner">
+                                    <label>First Name (In English)</label>
+                                    <input 
+                                        type="text" 
+                                        name="fname" 
+                                        placeholder="enter your first name" 
+                                        class="txtBox"
+                                        formControlName="fName"
+                                        required
+                                        >
+                                        <div *ngIf="fName && fName.invalid && (fName.touched || fName.dirty)"
+                                        class="text-danger"
+                                        >
+                                
+                                        <small *ngIf="fName.errors?.required">
+                                            First name is required.
+                                        </small>
+                                        <small *ngIf="fName.errors?.minlength">
+                                            Name must be more than 2 charachter
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <label>Last Name (In English)</label>
+                                    <input 
+                                        type="text" 
+                                        name="lName" 
+                                        placeholder="enter your last name" 
+                                        class="txtBox"
+                                        formControlName="lName"
+                                        required
+                                    >
+                                    <div *ngIf="lName && lName.invalid && (lName.touched || lName.dirty)"
+                                        class="text-danger"
+                                        >
+                                
+                                        <small *ngIf="lName.errors?.required">
+                                           Last name is required.
+                                        </small>
+                                        <small *ngIf="lName.errors?.minlength">
+                                            Name must be more than 2 charachter
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="inner" style="width:100%">
+                                    <label>Arabic full Name (In English)</label>
+                                    <input 
+                                        type="text" 
+                                        name="aName" 
+                                        placeholder="enter your arabic full name" 
+                                        class="txtBox"
+                                        formControlName="aName"
+                                        required
+                                        >
+                                        <div *ngIf="aName && aName.invalid && (aName.touched || aName.dirty)"
+                                        class="text-danger"
+                                        >
+                                
+                                        <small *ngIf="aName.errors?.required">
+                                            First name is required.
+                                        </small>
+                                        <small *ngIf="aName.errors?.pattern">
+                                            Please enter your arabic full name
+                                        </small>
+                                    </div>
+                                </div>
+                               
+                                <div class="inner">
+                                    <label>Gender</label>
+                                    <select 
+                                        name="gender"
+                                        formControlName = "customerGender"
+                                        
+                                        class="txtBox"
+                                    >
+                                    <option [ngValue]="null" selected disabled>Choose your gender</option>
+                                    <option  *ngFor = 'let gender of gender index as y'>{{gender.Gender_en}}</option>
+
+                            
+                                    </select>
+                                </div>
+                                <div class="inner">
+                                    <label>Nationality</label>
+                                    <select 
+                                        name="nationality"
+                                        
+                                        class="txtBox"
+                                        formControlName = "nationality"
+                                    >
+                                        <option [ngValue]="null" selected disabled>Choose your Nationality</option>
+                                        
+                                        <option  *ngFor = 'let nationality of nationalityList index as n'>{{nationality.Country}}</option>                           
+                                    </select>
+                                      <div *ngIf="nationality && nationality.invalid && (nationality.touched || nationality.dirty)"
+                                        class="text-danger">
+                                            <small>
+                                                Nationality is required.
+                                            </small>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="cmnBtn text-center">
+                                <button type="button" class="webBtn colorBtn nextBtn"
+                                  
+                                  > 
+                                 >Next</button>
+                            </div>
+
+                        </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="flexRow flex profileDp">
+                                <div class="col col1">
+                                    <div class="proDp ico">
+                                        <i class="fi-camera"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <button 
+                                            type="button"
+                                            class="webBtn colorBtn smBtn uploadImg"
+                                            id="uploadDp" data-image-src="dp">
+                                            <i class="fi-user"></i> Upload Photo
+                                        </button>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="flex flex-2">
+                                <div class="inner">
+                                    <label>Phone Number</label>
+                                    <input 
+                                        type="text"
+                                        name="phone" 
+                                         
+                                        class="txtBox" 
+                                        placeholder="Phone Number" 
+                                        formControlName= "phone"
+                                        required
+                                        >
+                                        <div *ngIf="phone && phone.invalid && (phone.touched || phone.dirty)"
+                                        class="text-danger"
+                                        >
+                                        <small *ngIf="phone.errors?.required">
+                                            Pone number is required.
+                                        </small>
+                                        <small *ngIf="phone.errors?.pattern">
+                                            enter correct phone number 
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <label>Date of Birth</label>
+                                    <input 
+                                        type="date"
+                                        name="dob" 
+                                        placeholder="dd/mm/yy" 
+                                        class="txtBox"
+                                        formControlName="dob"
+                                    >
+                                    <div *ngIf="dob && dob.invalid && dob.touched"
+                                        class="text-danger"
+                                        >
+                                        <small *ngIf="dob.errors?.required">
+                                            Date od birth is required.
+                                        </small>
+                                        <small *ngIf="dob.errors?.ageNotAllawed">
+                                            Your age must be more than 18 years
+                                        </small>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="txtGrp fullWideField">
+                                    <label>Occupation</label>
+                                    <select 
+                                        name="occupation"
+                                        
+                                        class="txtBox"
+                                        formControlName = "occupation"
+                                    >
+                                        <option [ngValue]="null" selected disabled>Choose your Occupation</option>
+                                        
+                                        <option *ngFor = "let occu of occupationsList index as o">{{occu.OccupationName}}</option>                           
+                                    </select>
+                                      <div *ngIf ="occupation && occupation.invalid && occupation.touched"
+                                        class="text-danger">
+                                
+                                            <small *ngIf="occupation.errors?.required">
+                                                Occupation is required.
+                                            </small>
+                                        </div>
+                                </div>
+                            <div class="txtGrp fullWideField">
+                                <label>Do you have any Disability(Dyslexia, Physical,..)<span> so we can serve you better</span></label>
+                                <select 
+                                    name="disability" 
+                                     
+                                    class="txtBox"
+                                    formControlName="disability"
+                                    [(ngModel)] = "optionValue"
+                                    (click) = hasDisability()
+                                    required
+                                >
+                                <option [ngValue]="null" selected disabled>Choose your</option>
+                                <option value = 'yes'>Yes</option>
+                                    <option value = 'no'>No</option>
+                                </select>
+                                <div *ngIf="disability && disability.invalid && (disability.touched || disability.dirty)"
+                                        class="text-danger"
+                                        >
+                                        <small *ngIf="disability.errors?.required">
+                                            
+                                            Select your status
+                                        </small>
+                                    </div>
+                                
+                            </div>
+                            <div class="txtGrp fullWideField" *ngIf="hasDisability()">
+                                <label>Disability Type</label>
+                                <select
+                                    name="disabilityType" 
+                                    
+                                    class="txtBox"
+                                    formControlName="disabilityType"
+                                  >
+                                    <option disabled selected [ngValue]="null"  >Choose One</option>
+                                    <option>Dyslexia</option>
+                                    <option>Physical</option>
+                                </select>
+                                <div *ngIf="disabilityType && disabilityType.invalid && disabilityType.touched"
+                                        class="text-danger">
+                                        <small *ngIf="disabilityType.errors?.required">
+                                            
+                                            Select your status
+                                        </small>
+                                    </div>
+                            </div>
+                            <div class="cmnBtn text-center">
+                                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                                <button type="button" class="webBtn colorBtn nextBtn"
+                                 
+                                (click) = getVerCode()
+                                >
+                                    
+                                    Next</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="successPeraRegister">
+                            <p>We have sent a message to your phone contining a verification code, enter the code in the box below.</p></div>
+                            <div class="txtGrp">
+                                    <label>Verification Code</label>
+                                    <input 
+                                        type="text"
+                                        name="code" 
+                                         
+                                        class="txtBox"
+                                        placeholder="enter verification code" 
+                                        formControlName="code"
+                                      >
+                                      <div *ngIf="code && code.invalid && code.touched && vCodeMatch()"
+                                        class="text-danger"
+                                        >
+                                        <small>
+                                            Incorrect Verfication code
+                                            
+                                        </small>
+                                    </div>
+                                </div>
+                            <div class="cmnBtn text-center">
+                                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                                <button type="button" class="webBtn colorBtn nextBtn">Next</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="inner txtGrp fullWideField" style = "width:100% ; padding-bottom: 0;">
+                                <label>Searh address</label>
+                                <input 
+                                    type="text"
+                                    name="search_bar" 
+                                    class="txtBox" 
+                                    placeholder="Search"
+                                    formControleName = 'search_bar'
+                                    (keyup) = "searchAddress()"
+                                  >
+                                  <div [className] = "showSearchResultList? 'showAddressResult':'hideAddressResult'"style = "background-color:white;">
+                                    <div *ngFor = "let customerLookup of customerLookupQuery index as x">
+                                        <ul style = "padding:2% ; margin: 1%;">
+                                            <li *ngFor = "let labels of customerLookup.labels" 
+                                                (click) = "getMoreLoockupResult(customerLookup.count ,customerLookup.id)"
+                                            >{{labels}}  <span class = 'text-small'> ( {{customerLookup.count}} more)</span></li>
+                                        </ul>
+
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="flex flex-2">
+                               
+                                <div class="inner" *ngIf ="postcode?.value != null">
+                                    <label>Zip Code/Post Code</label>
+                                    <input 
+                                        type="text"
+                                        name="postcode"  
+                                        placeholder="Zip Code/Post Code" 
+                                        class="txtBox"
+                                        formControlName = 'postcode'
+                                     >
+                                     <div *ngIf="postcode && postcode.invalid && (postcode.touched || postcode.dirty)"
+                                     class="text-danger"
+                                     >
+                             
+                                         <small *ngIf="postcode.errors?.required">
+                                            Post Code is required.
+                                         </small>
+                                     </div>
+                                </div>
+                                <div class="inner" *ngIf ="address1?.value != null">
+                                    <label> Address 1</label>
+                                    <input 
+                                        type="text"
+                                        name="address1" 
+                                        placeholder="enter your Address"
+                                        class="txtBox"
+                                        formControlName = 'address1'
+                                       >
+                                </div>
+                                <div class="inner" *ngIf ="address2?.value != null">
+                                    <label> Address 2</label>
+                                    <input 
+                                        type="text"
+                                        name="address2" 
+                                        placeholder="enter your Address 2"
+                                        class="txtBox"
+                                        formControlName = 'address2'
+                                       >
+                                </div>
+                                <div class="inner" *ngIf ="address3?.value != null">
+                                    <label> Address 3</label>
+                                    <input 
+                                        type="text"
+                                        name="address3" 
+                                        placeholder="Address 3"
+                                        class="txtBox"
+                                        formControlName = 'address3'
+                                       >
+                                </div>
+                                <div class="inner" *ngIf ="country?.value != null && town?.value != null">
+                                    <label> Country</label>
+                                    <input 
+                                        type="text"
+                                        name="country" 
+                                        placeholder="country"
+                                        class="txtBox"
+                                        formControlName = "country"
+                                    >
+                                    <div *ngIf="country && country.invalid && (country.touched || country.dirty)"
+									class="text-danger"
+									>
+							
+                                        <small *ngIf="country.errors?.required">
+                                            country is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="inner" *ngIf ="town?.value != null">
+                                    <label> Town</label>
+                                    <input 
+                                        type="text"
+                                        name="town" 
+                                        placeholder="Town"
+                                        class="txtBox"
+                                        formControlName = "town"
+                                    >
+                                    <div *ngIf="town && town.invalid && (town.touched || town.dirty)"
+									class="text-danger"
+									>
+							
+                                        <small *ngIf="town.errors?.required">
+                                            Town is required.
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                               
+                            </div>
+                            <!-- <div class="txtGrp fullWideField">
+                                <label>Address</label>
+                                <input type="text" name="" value="" placeholder="enter your address" class="txtBox">
+                            </div> -->
+                            <div class="cmnBtn text-center">
+                                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                                <button type="button" class="webBtn colorBtn nextBtn">Next</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="flex flex-2">
+                                <div class="inner">
+                                    <label>Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        name="email"   
+                                        class="txtBox" 
+                                        placeholder="email address"
+                                        formControlName="email"
+                                        pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+									    required
+                                    >
+                                    <div *ngIf="email && email.invalid && (email.touched || email.dirty)"
+									class="text-danger"
+									>
+							
+									<small *ngIf="email.errors?.required">
+										email is required.
+									</small>
+									<small *ngIf="email.errors?.pattern">
+										email not valid.</small>
+								</div>
+                                </div>
+                                <div class="inner">
+                                    <label>Confirm Email Address</label>
+                                    <input 
+                                        type="text" 
+                                        name="confirmEmail" 
+                                         
+                                        class="txtBox"
+                                        placeholder="confirm email address"
+                                        formControlName="confirmEmail"
+                                        pattern = '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$'
+									    required
+                                     >
+                                     <div *ngIf="confirmEmail && confirmEmail.invalid && (confirmEmail.touched || confirmEmail.dirty) || registerForm.errors?.emailNotMatch"
+                                        class="text-danger"
+                                        >
+                                        <small *ngIf="confirmEmail && confirmEmail.errors?.required">
+                                            confirm email is required.
+                                        </small>
+                                        <small *ngIf="confirmEmail && confirmEmail.errors?.pattern">
+                                            Enter Valid Email
+                                         </small>
+                                        <small *ngIf="registerForm.errors?.emailNotMatch">
+                                            Your email and confirm email must be match
+                                        </small>
+                                       
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <label>Password</label>
+                                    <input 
+                                    type="password"
+                                    name="password"  
+                                    class="txtBox" 
+                                    placeholder="enter your password"
+                                    formControlName = "password"
+                                    required
+                                     >
+                                     <div *ngIf="password && password.invalid && (password.touched || password.dirty)"
+                                        class="text-danger"
+                                        >
+                                
+                                        <small *ngIf="password.errors?.required">
+                                            Password is required.
+                                        </small>
+								    </div>
+                                    
+                                </div>
+
+                                <div class="inner">
+                                    <label>Confirm Password</label>
+                                    <input 
+                                        type="password"
+                                        name="confirmPassword" 
+                                        class="txtBox"
+                                        placeholder="confirm password"
+                                        formControlName = 'confirmPassword'
+                                        required
+                                       >
+                                       <div *ngIf="confirmPassword && confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty) || registerForm.errors?.passwordNotMatch"
+                                        class="text-danger"
+                                        >
+                                        <small *ngIf="confirmPassword && confirmPassword.errors?.required">
+                                            confirm password is required.
+                                        </small>
+                                        <small *ngIf="registerForm.errors?.passwordNotMatch">
+                                            Your password and confirm password must be match
+                                        </small>
+                                       
+                                    </div>
+                                       
+                                </div>
+                            </div>
+                            <div class="cmnBtn text-center">
+                                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                                <button type="button" class="webBtn colorBtn nextBtn">Next</button>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="successPeraRegister">
+                            <h4>Registration completed successfully</h4>
+                            <p>Registration completed successfully, press finish to login to your account.</p></div>
+                            <div class="cmnBtn text-center">
+                                <button type="submit" class="webBtn colorBtn" >Finish</button>
+                            </div>
+                        </fieldset>
+                        <input type="file" id="uploadFile" name="uploadFile" class="uploadFile" data-file="">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    </main>
+    

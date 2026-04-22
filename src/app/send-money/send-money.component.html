@@ -1,0 +1,225 @@
+
+<div class="dashSideBtn">
+    <a class="webBtn colorBtn"  href="#" routerLink = '/dashboard/add-receiver'  >Add New Receiver</a>
+</div>
+
+<div class="dashForms sendFormMoney">
+    <form 
+       [formGroup] = "sendMoneyForm"
+       (ngSubmit) = "confirmPayment()"
+    >
+        <fieldset>
+            <div class="flex flex-2">
+                <div class="fullWideField inner">
+                    <label>Select Reciever</label>
+                    <select 
+                        name="receiver" 
+                        class="txtBox"
+                        formControlName = "receiver"
+                        (change) = "returnReceiverCurrencyAndMethod()"
+                     >
+                        <option *ngFor = "let receiver of receiversList" [value]="receiver.ReceiverID">
+                            {{receiver.EName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Choose Delivery Currency</label>
+                    <select 
+                        name="receiverDeliveryCurrency" 
+                        class="txtBox"
+                        formControlName = "receiverDeliveryCurrency"
+                        (change) = "getCurrencyDeliveryMethod()"
+                    >
+                        <option  *ngFor = "let reCurrencies of receiverCurencies" [value]="reCurrencies.currencyID">
+                            {{reCurrencies.currency}}
+                        </option>
+                    </select>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Choose Delivery Method</label>
+                    <select 
+                        name="receiverDeliveryMethod" 
+                        class="txtBox"
+                        formControlName = "receiverDeliveryMethod"
+                
+                    >
+                        <option  
+                            *ngFor = "let method of receiverDeliveryMethodList" 
+                            [value]="method.payoutmethodID"
+                        >
+                            {{method.payoutmethod}}
+                        </option>
+                    </select>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Purpose of Transaction</label>
+                    <select 
+                        name="purposeOfTransaction" 
+                        class="txtBox"
+                        formControlName = "purposeOfTransaction"
+                    >
+                        <option  *ngFor ="let puropse of purposeOfTransactionList" [value]="puropse.PurposeID">{{puropse.Purpose}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="cmnBtn text-center">
+                <button type="button" class="webBtn colorBtn nextBtn" (click) = "calculateRate()"
+                    [disabled] = "receiver?.value == null
+                                    || receiverDeliveryCurrency?.value == null
+                                    || receiverDeliveryMethod?.value == null
+                                    || purposeOfTransaction?.value == null"
+            >
+                    Next
+                </button>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="txtGrp flex formHeadAll">
+                <!-- <h6>Transection Info</h6> -->
+            </div>
+            <div class="flex flex-2">
+                <div class="fullWideField inner">
+                    <label>Enter Amount to Recieve</label>
+                    <div class="relative outCmnLabelTxt">
+                        <input 
+                            type="text" 
+                            name="amountToReceive"
+                            class="txtBox"
+                            formControlName = "amountToReceive"
+                            (keyup) = "calculateAmountTosend()"
+                            (change) = "calculateAmountTosend()"
+                         >
+                        <span class="cmnLabelTxt">{{returnCurrencyName()}}</span>
+
+                        <div *ngIf="ReamountValidaty && ReamountValidaty.validAmount == false"
+                        class="text-danger">
+                        <small>{{ReamountValidaty.amountMessage}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Enter Amount to Send</label>
+                    <div class="relative outCmnLabelTxt">
+                        <input 
+                            type="text" 
+                            name="amountToSend" 
+                            class="txtBox"
+                            formControlName = "amountToSend"
+                            (keyup) = "calculateAmountToReceive()"
+                            (change) = "calculateAmountToReceive()"
+                        >
+                        <span class="cmnLabelTxt">{{sendingCurrency}}</span>
+                    </div>
+                    <div *ngIf="amountValidaty &&  amountValidaty.validAmount == false"
+										  class="text-danger">
+										  <small>{{amountValidaty.amountMessage}}</small>
+								  		</div>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Choose Payment Method</label>
+                    <select 
+                        name="paymentMethod"
+                        class="txtBox"
+                        formControlName = "paymentMethod"
+                      >
+                        <option 
+                            *ngFor = "let paymentMethod of paymetMethodList"
+                            [value]="paymentMethod.MethodID"
+                        >
+                            {{paymentMethod.MethodName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="fullWideField inner">
+                    <label>Source of Fund</label>
+                    <select 
+                        name="proofFundType" 
+                        class="txtBox"
+                        formControlName = "proofFundType"
+                    >
+                        <option 
+                            *ngFor = "let fundType of sourceOfFundList"
+                            [value]="fundType.ProofOfSOFID">
+                            {{fundType.ProofName_en}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="cmnBtn text-center">
+                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                <button type="button" class="webBtn colorBtn nextBtn" 
+                (click) = "getTransactionDetails()"
+                [disabled] = "proofFundType?.value == null 
+                                || paymentMethod?.value == null
+                                ||(amountToSend?.value == null || amountToReceive?.value == null)
+                            "
+                >
+                    Next
+                </button>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="txtGrp flex formHeadAll">
+                <h6>Summery</h6>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Recipent</label>
+                <span></span>
+                <p>{{transactionDetails.RCVEName}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>City</label>
+                <span></span>
+                <p>{{transactionDetails.RxCity}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Country</label>
+                <span></span>
+                <p>{{transactionDetails.RxCountry}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Amount to be sent</label>
+                <span></span>
+                <p>{{transactionDetails.TxAmount}} {{transactionDetails.TxCurrency}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Amount to be recieved</label>
+                <span></span>
+                <p>{{transactionDetails.RxAmount}} {{transactionDetails.RxCurrency}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Bank delivery fees</label>
+                <span></span>
+                <p>{{transactionDetails.TransFees}} {{transactionDetails.TxCurrency}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Service charges</label>
+                <span></span>
+                <p> {{transactionDetails.OurFees}} {{transactionDetails.TxCurrency}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Credit card fees</label>
+                <span></span>
+                <p>{{transactionDetails.ExtraCharges}} {{transactionDetails.TxCurrency}}</p>
+            </div>
+            <div class="txtGrp flex dotedFlex">
+                <label>Exchange rate</label>
+                <span></span>
+                <p>{{transactionDetails.Rate}}</p>
+            </div>
+            <div class="txtGrp flex highlightFlex dotedFlex">
+                <h4>Total</h4>
+                <span></span>
+                <p>{{transactionDetails.TotalToPay}}{{transactionDetails.TxCurrency}}</p>
+            </div>
+            <div class="cmnBtn text-center">
+                <button type="button" class="webBtn blueBtn backBtn">Back</button>
+                <button type="submit" class="webBtn colorBtn" [disabled] = "!enableConfirmButton"
+            
+                >Confirm</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<app-my-loader></app-my-loader>

@@ -1,0 +1,33 @@
+<div *ngIf = "!displayTopHeader()">
+    <app-header ></app-header>
+    <router-outlet></router-outlet>
+</div>
+
+    <div id="home-page"  *ngIf = "displayTopHeader()" >
+
+        <app-header-top></app-header-top>
+        <main class = 'flex'>
+            <div id="dash" >
+                <div class="contain">
+                    <div class="flex">
+        
+                        <app-sidebar></app-sidebar>
+                        <div class="dashBody">
+                            <div class="dashHeading"> <h3>Dashboard | <span>Overview</span></h3></div>
+                            <router-outlet></router-outlet>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+</div>
+
+<!-- <app-header-top *ngIf = "displayTopHeader()"></app-header-top>
+
+    <app-sidebar *ngIf = "displayTopHeader()"></app-sidebar> -->
+
+        <app-footer></app-footer>
+
+

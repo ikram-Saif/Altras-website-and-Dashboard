@@ -1,0 +1,71 @@
+<div class="historyBlk">
+    <div class="inner">
+        <div class="flex outrCardCol">
+            <div class="cardCol" *ngFor = "let transaction  of transactionList index  as t">
+                <div class="_card" id = {{t}}>
+                    <a href="sendMoney.php" class="sendIcon" style="display: block;">
+                        <img src="assets/images/users/transfer.png">
+                    </a>
+                    <div class="flex">
+                        <div class="sideIco">
+                            <i class="fa fa-user-o"></i>
+                        </div>
+                        <div class="sideCntnt">
+                            <h4>{{transaction.RxEName}}</h4>
+                            <span class="address">SGD {{transaction.SumSend}}</span>
+                            <span [ngClass] = "getStatusClass(transaction.Status)">{{transaction.Status}}</span>
+                        </div>
+                    </div>
+                    <div class="flex infoId">
+                        <div class="leftCol">
+                            <h5>ID:{{transaction.TransactionID}}</h5>
+                        </div>
+                        <div class="rightCol">
+                            <h5>{{transaction.SentDate}}</h5>
+                        </div>
+                    </div>
+                    <div class="cardFooter">
+                        <div class="flex">
+                            <a  class="footerCol">
+                                <span><i class="fa fa-share-square-o"></i></span>
+                                <h5>Share</h5>
+                            </a>
+                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="transectionDetails" (click) ="getTransactionInfoById(transaction.TransactionID)">
+                                <span><i class="fa fa-info-circle"></i></span>
+                                <h5>Details</h5>
+                            </a>
+                            <a href="javascript:void(0)" class="footerCol popBtn" data-popup="transectionStatus" (click) ="getTransactionStatus(transaction.TransactionID)">
+                                <span><i class="fa fa-circle"></i></span>
+                                <h5>Status</h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <ngx-smart-modal #myModal identifier="myModal">
+    <div *ngIf="myModal.hasData()">
+        <pre>{{ myModal.getData() | json }}</pre>
+    <h1>Title</h1>
+    <p>Some stuff...</p>
+</div>
+  
+    <button (click)="myModal.close()">Close</button>
+
+  </ngx-smart-modal> -->
+<div class="text-center">
+    <ul class="pagination">
+        <li><a href="?">&laquo;</a></li>
+        <li><a href="?">1</a></li>
+        <li><a href="?" class="active">2</a></li>
+        <li><a href="?">3</a></li>
+        <li><a href="?">4</a></li>
+        <li><a href="?">5</a></li>
+        <li><a href="?">&raquo;</a></li>
+    </ul>
+   
+</div>
+<app-status-popup [transactionStatus] = "transactionStatus"></app-status-popup>
+<app-transaction-details-popup [transactionInfo] = "transactionInfo"></app-transaction-details-popup>

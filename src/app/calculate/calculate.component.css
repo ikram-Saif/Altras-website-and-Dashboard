@@ -1,0 +1,58 @@
+.countField .inner{
+    padding: 0;
+    padding-right: 10px;
+}
+.countField .inner:nth-child(2n)::before{
+    content:''
+}
+.countField .inner .smIcoField span.active , .countField .inner .smIcoField select{
+    background: #f7f7f7;
+    color: #34a0ff;
+}
+.equals {
+    font-size: 23px;
+    color: #3852ae;
+
+}
+.hintStyle{
+    margin:5%
+}
+.radio-inline{
+color:#778ca3 !important
+}
+input[type='radio'] {
+    /* -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; */
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #778ca3;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #778ca3;
+}
+input[type='radio']:checked {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: #778ca3;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 1px solid #778ca3;
+}
+input[type="radio"]:checked, input[type="checkbox"]:checked{
+    color:gray !important
+}
+/* ._inner .flex{
+
+    justify-content: space-between;
+} */

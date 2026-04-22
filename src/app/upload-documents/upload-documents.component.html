@@ -1,0 +1,69 @@
+<main>
+          <div class="dashForms">
+                        <form 
+                        [formGroup] = "uploadDocumentForm"
+                        >
+                            <div class="flex flex-2 uploadDocLst">
+                                <div class="inner">
+                                    <div class="docBox">
+                                        <h4>Select Document type</h4>
+                                        <div class="lblBtn" *ngFor = "let docType of documentTypeList index as d">
+                                            <input 
+                                                type="radio" 
+                                                name="documentType"
+                                                [value]="docType"
+                                                formControlName = 'documentType'
+                                                (change) = "getDocumentType()"
+                                            >
+                                            <label for="identity">Proof of {{docType}}</label>
+                                        </div>
+                                       
+                                        <!-- <div class="bTn">
+                                            <button type="submit" name="" class="webBtn colorBtn">Send</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="inner">
+                                    <div class="docBox" class="identity">
+                                        <h4>Select proof of {{documentType?.value}}</h4>
+                                        <div class="lblBtn" *ngFor = "let doc of newArr">
+                                            <input 
+                                            type="radio"
+                                             name="document" 
+                                             [value]="doc"
+                                             formControlName = "document"
+                                             >
+                                            <label>{{doc}}</label>
+                                        </div>
+                                       
+                                        <!-- <div class="bTn">
+                                            <a 
+                                            href="javascript:void(0)"
+                                            class="webBtn blueBtn uploadImg"
+                                            id="uploadDp"
+                                            >
+                                               Upload The Document
+                                            </a>
+                                        </div> -->
+                                        <angular-file-uploader
+                                        [config]="afuConfig">
+                                        </angular-file-uploader>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                            <!-- <input 
+                                type="file"
+                                id="uploadFile"
+                                name="uploadFile" 
+                                class="uploadFile"
+                                formControlName = "uploadFile"
+                                (change) = onFileSelected($event)
+                                                                            data-image-src="file"
+
+                            >
+                            -->
+                        </form>
+                    </div>
+                   
+</main>

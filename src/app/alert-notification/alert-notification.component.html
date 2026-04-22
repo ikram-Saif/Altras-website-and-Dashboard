@@ -1,0 +1,20 @@
+<div class="_alert alert_success flex" *ngIf= "responsetype == 'success'">
+    <span class="symbolClass"><i class="fa fa-check-square"></i></span>
+    <p>{{message}}</p>
+    <span class="_crossClass"><i class="fi-cross"></i></span>
+</div>
+<div class="_alert alert_error flex" *ngIf= 'responsetype == "error"'>
+    <span class="symbolClass"><i class="fa fa-exclamation-triangle"></i></span>
+    <p>{{message}}</p>
+    <span class="_crossClass"><i class="fi-cross"></i></span>
+</div>
+<div class="_alert alert_info flex" *ngIf= 'responsetype == "info"'>
+    <span class="symbolClass"><i class="fa fa-info-circle"></i></span>
+    <p>{{message}}</p>
+    <span class="_crossClass"><i class="fi-cross"></i></span>
+</div>
+<div class="_alert alert_warn flex" *ngIf= 'responsetype == "warning"'>
+    <span class="symbolClass"><i class="fa fa-question-circle"></i></span>
+    <p>{{message}}</p>
+    <span class="_crossClass"><i class="fi-cross"></i></span>
+</div>
